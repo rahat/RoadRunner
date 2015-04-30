@@ -1,11 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@mipmap/background"
+    android:nestedScrollingEnabled="true"
+    android:backgroundTintMode="src_in"
+    android:focusable="true"
+    android:id="@+id/getDistanceButton">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Connect with Facebook  "
+        android:id="@+id/facebookButton"
+        android:layout_marginBottom="40dp"
+        android:background="#ff55bbff"
+        android:clickable="false"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
+        android:paddingLeft="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Today&apos;s Run "
+        android:id="@+id/runButton"
+        android:background="#ff55bbff"
+        android:textColor="#ffffffff"
+        android:minHeight="80dp"
+        android:width="300dp"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="RoadRunner"
+        android:id="@+id/roadRunnerText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:textStyle="bold|italic"
+        android:textSize="60dp"
+        android:textIsSelectable="true"
+        android:textColor="#ffffffff" />
 
 </RelativeLayout>
