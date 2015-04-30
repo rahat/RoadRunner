@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".runActivity"
+    android:background="@android:color/holo_blue_light"
+    android:focusable="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Calories"
+        android:id="@+id/textView"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="35dp"
+        android:textColor="#ffffffff"
+        android:textSize="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:textStyle="bold|italic" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/calories"
+        android:layout_marginTop="115dp"
+        android:background="@android:color/white"
+        android:editable="true"
+        android:elegantTextHeight="false"
+        android:longClickable="true"
+        android:minHeight="40dp"
+        android:minWidth="350dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Insert the number of calories you want to burn"
+        android:id="@+id/textView2"
+        android:layout_marginTop="43dp"
+        android:textColor="#ffffffff"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/calories"
+        android:layout_alignStart="@+id/calories" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Distance"
+        android:id="@+id/getDistanceButton"
+        android:textColor="#ffffffff"
+        android:background="#ffff8e1f"
+        android:minWidth="200dp"
+        android:nestedScrollingEnabled="true"
+        android:layout_marginTop="51dp"
+        android:layout_below="@+id/calories"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Distance: "
+        android:id="@+id/distanceLabel"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffffff"
+        android:layout_below="@+id/getDistanceButton"
+        android:layout_alignLeft="@+id/calories"
+        android:layout_alignStart="@+id/calories"
+        android:visibility="visible" />
+
+</RelativeLayout>
