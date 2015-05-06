@@ -1,5 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1.0">
 
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".mapActivity"
+        />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:layout_weight="1"
+        android:layout_alignBottom="@+id/map">
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Choose Start "
+        android:id="@+id/chooseStartButton"
+        android:background="#ff55bbff"
+        android:clickable="true"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
+        android:paddingLeft="1dp"
+        android:focusable="true"
+        android:onClick="chooseStartPosition"
+        android:minHeight="50dp"
+        android:layout_alignBottom="@+id/map"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_weight=".33"/>
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Display Route "
+        android:id="@+id/DisplayRoute"
+        android:background="#ff55bbff"
+        android:clickable="true"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
+        android:paddingLeft="1dp"
+        android:focusable="true"
+        android:onClick="addLines"
+        android:minHeight="50dp"
+        android:layout_alignBottom="@+id/map"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_weight=".33"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Choose End   "
+            android:id="@+id/chooseEndButton"
+            android:background="#ff55bbff"
+            android:clickable="true"
+            android:textColor="@android:color/white"
+            android:textStyle="italic"
+            android:paddingLeft="1dp"
+            android:focusable="true"
+            android:minHeight="50dp"
+            android:layout_alignBottom="@+id/map"
+            android:layout_centerHorizontal="true"
+            android:layout_weight=".33"
+            android:onClick="chooseEndPosition" />
+    </LinearLayout>
 </RelativeLayout>
