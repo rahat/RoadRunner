@@ -108,9 +108,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/distanceView"
         android:textColor="#ffffffff"
-        android:layout_alignTop="@+id/distanceLabel"
-        android:layout_toRightOf="@+id/distanceLabel"
         android:layout_alignBottom="@+id/distanceLabel"
+        android:layout_toRightOf="@+id/distanceLabel"
         android:layout_alignRight="@+id/getDistanceButton"
         android:layout_alignEnd="@+id/getDistanceButton" />
 
