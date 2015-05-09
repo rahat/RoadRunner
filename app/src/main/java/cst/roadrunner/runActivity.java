@@ -40,7 +40,11 @@ public class runActivity extends Activity {
                         final int weight = Integer.parseInt(weightString);
 
                         String distance = Double.toString(calculateDistance(calories, weight));
-                        distanceView.setText(distance);
+
+                        // Round double to 2 decimal places
+                        String.format("%.2f", distance);
+
+                        distanceView.setText(distance + " miles");
                     }
                 });
     }
