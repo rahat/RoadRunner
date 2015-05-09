@@ -41,6 +41,10 @@
             android:name=".mapActivity"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name=".runActivity"
+            android:label="@string/title_activity_run" >
+        </activity>
     </application>
 
 </manifest>
