@@ -17,10 +17,10 @@
         android:textColor="#ffffffff"
         android:textSize="40dp"
         android:textStyle="bold|italic"
+        android:layout_marginTop="39dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="43dp" />
+        android:layout_alignStart="@+id/textView2" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -58,9 +58,9 @@
         android:background="#ffff8e1f"
         android:minWidth="200dp"
         android:nestedScrollingEnabled="true"
-        android:layout_marginTop="24dp"
         android:layout_below="@+id/weight"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,11 +107,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/distanceView"
-        android:layout_toRightOf="@+id/distanceLabel"
-        android:layout_alignRight="@+id/weight"
-        android:layout_alignEnd="@+id/weight"
         android:textColor="#ffffffff"
-        android:layout_alignTop="@+id/distanceLabel"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignBottom="@+id/distanceLabel"
+        android:layout_toRightOf="@+id/distanceLabel"
+        android:layout_alignRight="@+id/getDistanceButton"
+        android:layout_alignEnd="@+id/getDistanceButton" />
 
 </RelativeLayout>

@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class runActivity extends Activity {
 
     Button distanceButton;
@@ -39,8 +41,12 @@ public class runActivity extends Activity {
                         final int calories = Integer.parseInt(caloriesString);
                         final int weight = Integer.parseInt(weightString);
 
-                        String distance = Double.toString(calculateDistance(calories, weight));
-                        distanceView.setText(distance);
+                        // Round distance to 2 decimal places
+                        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+
+                        String distance = df.format(calculateDistance(calories, weight)).toString();
+
+                        distanceView.setText(distance + " miles");
                     }
                 });
     }
