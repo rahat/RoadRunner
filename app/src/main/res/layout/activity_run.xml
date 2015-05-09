@@ -28,21 +28,20 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/calories"
-        android:layout_marginTop="115dp"
         android:background="@android:color/white"
         android:editable="true"
         android:elegantTextHeight="false"
         android:longClickable="true"
         android:minHeight="40dp"
         android:minWidth="350dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Insert the number of calories you want to burn"
+        android:text="Insert the number of calories you want to burn:"
         android:id="@+id/textView2"
         android:layout_marginTop="43dp"
         android:textColor="#ffffffff"
@@ -59,10 +58,9 @@
         android:background="#ffff8e1f"
         android:minWidth="200dp"
         android:nestedScrollingEnabled="true"
-        android:layout_marginTop="38dp"
-        android:layout_below="@+id/editText"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/weight"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,18 +68,18 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Distance: "
         android:id="@+id/distanceLabel"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="31dp"
         android:textColor="#ffffffff"
+        android:visibility="visible"
         android:layout_below="@+id/getDistanceButton"
-        android:layout_alignLeft="@+id/calories"
-        android:layout_alignStart="@+id/calories"
-        android:visibility="visible" />
+        android:layout_alignLeft="@+id/weight"
+        android:layout_alignStart="@+id/weight" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Insert your weight"
+        android:text="Insert your weight:"
         android:id="@+id/textView3"
         android:textColor="#ffffffff"
         android:layout_below="@+id/calories"
@@ -94,7 +92,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/weight"
         android:background="@android:color/white"
         android:editable="true"
         android:elegantTextHeight="false"
@@ -104,5 +102,16 @@
         android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanceView"
+        android:layout_toRightOf="@+id/distanceLabel"
+        android:layout_alignRight="@+id/weight"
+        android:layout_alignEnd="@+id/weight"
+        android:textColor="#ffffffff"
+        android:layout_alignTop="@+id/distanceLabel"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
