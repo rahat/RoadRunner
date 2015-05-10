@@ -19,8 +19,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.DirectionsApi;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsRoute;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class mapActivity extends FragmentActivity implements LocationListener, OnMapClickListener, OnMapLongClickListener {
 
@@ -30,6 +36,9 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
     private android.location.LocationListener locationListener;
     String markerTitle = "";
     boolean markerStartExists, markerEndExists = false;
+    private List<LatLng> latLngs = new ArrayList<>();
+    private List<Marker> markers = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +128,25 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
 
     public void addLines(View view) {
         if ((markerStartExists = true) && (markerEndExists = true)) {
-            mMap.addPolyline((new PolylineOptions()).add(startLocation, endLocation).width(10).color(Color.rgb(102, 204, 255)).geodesic(true));
+            GeoApiContext context = new GeoApiContext();
+            context.setApiKey("AIzaSyBbBEsSFL6AZ5YyG2Kh_2c7nDgQ4ccPJxs");
+            DirectionsRoute[] routes = new DirectionsRoute[0];
+            try {
+                routes = DirectionsApi.getDirections(context, startLocation.latitude + "," + startLocation.longitude, endLocation.latitude + "," + endLocation.longitude).await();
+                System.out.println(routes[0].overviewPolyline.decodePath().size());
+                System.out.println(routes[0].overviewPolyline.decodePath().getClass().getName());
+                System.out.println(routes[0].overviewPolyline.decodePath());
+
+                ArrayList<LatLng> coordList = new ArrayList<LatLng>();
+                for (com.google.maps.model.LatLng latLng : routes[0].overviewPolyline.decodePath()) {
+                    LatLng point = new LatLng(latLng.lat, latLng.lng);
+                    coordList.add(point);
+                }
+                PolylineOptions options = new PolylineOptions().addAll(coordList).width(10).color(Color.rgb(102, 204, 255)).geodesic(true);
+                mMap.addPolyline(options);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
