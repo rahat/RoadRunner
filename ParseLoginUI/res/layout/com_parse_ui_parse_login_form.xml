@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:orientation="vertical"
     android:id="@+id/parse_login"
-    android:visibility="gone"
+
     android:background="@drawable/background"
     android:focusable="false"
     android:touchscreenBlocksFocus="false">
@@ -22,7 +22,8 @@
         android:textIsSelectable="true"
         android:textColor="#ffffffff"
         android:textAlignment="center"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp" />
 
     <EditText
         android:id="@+id/login_username_input"
