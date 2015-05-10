@@ -1,5 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/com_parse_ui_vertical_margin"
+    android:paddingLeft="@dimen/com_parse_ui_horizontal_margin"
+    android:paddingRight="@dimen/com_parse_ui_horizontal_margin"
+    android:paddingBottom="@dimen/com_parse_ui_vertical_margin"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@mipmap/background">
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="RoadRunner"
+        android:id="@+id/roadRunnerText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:textStyle="bold|italic"
+        android:textSize="60dp"
+        android:textIsSelectable="true"
+        android:textColor="#ffffffff" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ParseLoginUI.TextView"
+            android:text="@string/profile_title_logged_in" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ParseLoginUI.TextView" />
+
+        <TextView
+            android:id="@+id/profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ParseLoginUI.TextView" />
+
+        <Button
+            android:id="@+id/login_or_logout_button"
+            style="@style/ParseLoginUI.Button"
+            android:layout_marginTop="@dimen/com_parse_ui_large_vertical_spacing"
+            android:text="@string/profile_logout_button_label"/>
+
+    </LinearLayout>
+</LinearLayout>

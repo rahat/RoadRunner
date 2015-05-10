@@ -3,10 +3,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@mipmap/background"
-    android:nestedScrollingEnabled="true"
     android:backgroundTintMode="src_in"
     android:focusable="true"
-    android:id="@+id/getDistanceButton">
+    android:id="@+id/getDistanceButton"
+    android:onClick="startSocialActivity">
 
     <Button
         android:layout_width="wrap_content"

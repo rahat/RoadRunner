@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +17,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "A8dGeDxlmuJcIER5pxDgPgchJm6J6QcQbIii9dGp", "ibn7etv5iaj6DWEPL3crLEPXAKqojpVvIoZc1NP0");
+        ParseFacebookUtils.initialize(this);
     }
     public void startRunActivity(View view) {
         startActivity(new Intent(MainActivity.this, runActivity.class));
+    }
+    public void startSocialActivity(View view) {
+        startActivity(new Intent(MainActivity.this, socialActivity.class));
     }
 
 

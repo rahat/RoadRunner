@@ -5,4 +5,13 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_run">Today\'s Run</string>
+    <string name="profile_logo_content_description">Logo</string>
+    <string name="profile_title_logged_in">Your are logged in as</string>
+    <string name="profile_logout_button_label">Log out</string>
+    <string name="profile_title_logged_out">You must be logged in to view your profile</string>
+    <string name="profile_login_button_label">Log in</string>
+    <string name="title_activity_social">Log In</string>
+    <string name="parse_app_id">A8dGeDxlmuJcIER5pxDgPgchJm6J6QcQbIii9dGp</string>
+    <string name="parse_client_key">ibn7etv5iaj6DWEPL3crLEPXAKqojpVvIoZc1NP0</string>
+    <string name="facebook_app_id">INSERT FACEBOOK APP ID HERE</string>
 </resources>
