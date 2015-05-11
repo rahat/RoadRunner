@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".runActivity"
     android:background="@android:color/holo_blue_light"
-    android:focusable="true">
+    android:focusable="true"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,5 +114,33 @@
         android:layout_toRightOf="@+id/distanceLabel"
         android:layout_alignRight="@+id/getDistanceButton"
         android:layout_alignEnd="@+id/getDistanceButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Choose Location "
+        android:id="@+id/mapButton"
+        android:textColor="#ffffffff"
+        android:background="#ffff7671"
+        android:minWidth="100dp"
+        android:nestedScrollingEnabled="true"
+        android:onClick="startMapActivity"
+        android:textStyle="bold|italic"
+        android:enabled="false"
+        android:layout_below="@+id/timeView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Estimated Time:"
+        android:id="@+id/timeView"
+        android:textColor="#ffffffff"
+        android:visibility="visible"
+        android:layout_below="@+id/distanceLabel"
+        android:layout_alignLeft="@+id/distanceLabel"
+        android:layout_alignStart="@+id/distanceLabel" />
 
 </RelativeLayout>
