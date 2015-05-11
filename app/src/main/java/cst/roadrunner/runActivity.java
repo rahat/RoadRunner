@@ -1,6 +1,7 @@
 package cst.roadrunner;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,12 @@ import java.text.DecimalFormat;
 public class runActivity extends Activity {
 
     Button distanceButton;
+    Button mapButton;
     EditText caloriesInput;
     EditText weightInput;
     TextView distanceView;
+    TextView timeView;
+    double runDistance;
 
     /** Called when the activity is first created. */
     @Override
@@ -24,9 +28,11 @@ public class runActivity extends Activity {
         setContentView(R.layout.activity_run);
 
         distanceButton = (Button)findViewById(R.id.getDistanceButton);
+        mapButton = (Button)findViewById(R.id.mapButton);
         caloriesInput  = (EditText)findViewById(R.id.calories);
         weightInput    = (EditText)findViewById(R.id.weight);
         distanceView   = (TextView)findViewById(R.id.distanceView);
+        timeView   = (TextView)findViewById(R.id.timeView);
 
         distanceButton.setOnClickListener(
                 new View.OnClickListener()
@@ -46,7 +52,16 @@ public class runActivity extends Activity {
 
                         String distance = df.format(calculateDistance(calories, weight)).toString();
 
+                        runDistance = calculateDistance(calories, weight);
+
                         distanceView.setText(distance + " miles");
+
+                        String time = df.format(calculateTime(calories, weight)).toString();
+
+                        timeView.setText("Estimated Time: "+time + " minutes");
+                        mapButton.setEnabled(true);
+
+
                     }
                 });
     }
@@ -83,5 +98,11 @@ public class runActivity extends Activity {
     public double calculateDistance(int calories, int weight) {
         double distance = (calculateTime(calories, weight) * MILES_PER_MIN);
         return distance;
+    }
+
+    public void startMapActivity(View view) {
+        Intent mapIntent = new Intent(runActivity.this, mapActivity.class);
+        mapIntent.putExtra("runDistance", runDistance);
+        startActivity(mapIntent);
     }
 }
