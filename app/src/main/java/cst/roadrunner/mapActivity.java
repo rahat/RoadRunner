@@ -1,5 +1,6 @@
 package cst.roadrunner;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.TravelMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,11 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
 
     LatLng startLocation;
     LatLng endLocation;
+    double runDistance;
+    double lat1;
+    double lon1;
+    double lat2;
+    double lon2;
     private GoogleMap mMap;
     private android.location.LocationListener locationListener;
     String markerTitle = "";
@@ -45,6 +52,11 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         setUpMapIfNeeded();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            runDistance = extras.getDouble("runDistance");
+            Log.d("runDistance:", String.valueOf(runDistance));
+        }
     }
 
     @Override
@@ -99,12 +111,10 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
 
     public void chooseStartPosition(View view) {
         markerTitle = "Jog Start";
-
     }
 
     public void chooseEndPosition(View view) {
         markerTitle = "Jog End";
-
     }
 
     public void onMapClick(LatLng latLng) {
@@ -117,35 +127,55 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
             Marker start = mMap.addMarker(new MarkerOptions().position(latLng).title("Jog Start").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
             Log.d("mapActivity", "Start marker added" + latLng.toString());
             startLocation = start.getPosition();
+            lat1 = startLocation.latitude;
+            lon1 = startLocation.longitude;
             markerStartExists = true;
         } else if (markerTitle == "Jog End") {
             Marker end = mMap.addMarker(new MarkerOptions().position(latLng).title("Jog End").draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
             Log.d("mapActivity", "End marker added" + latLng.toString());
             endLocation = end.getPosition();
+            lat2 = endLocation.latitude;
+            lon2 = endLocation.longitude;
             markerEndExists = true;
         }
     }
 
-    public void addLines(View view) {
-        if ((markerStartExists = true) && (markerEndExists = true)) {
-            GeoApiContext context = new GeoApiContext();
-            context.setApiKey("AIzaSyBbBEsSFL6AZ5YyG2Kh_2c7nDgQ4ccPJxs");
-            DirectionsRoute[] routes = new DirectionsRoute[0];
-            try {
-                routes = DirectionsApi.getDirections(context, startLocation.latitude + "," + startLocation.longitude, endLocation.latitude + "," + endLocation.longitude).await();
-                System.out.println(routes[0].overviewPolyline.decodePath().size());
-                System.out.println(routes[0].overviewPolyline.decodePath().getClass().getName());
-                System.out.println(routes[0].overviewPolyline.decodePath());
+    public static double calcDistance(double lat1, double lon1, double lat2, double lon2) {
+        double R = 6372.8;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
 
-                ArrayList<LatLng> coordList = new ArrayList<LatLng>();
-                for (com.google.maps.model.LatLng latLng : routes[0].overviewPolyline.decodePath()) {
-                    LatLng point = new LatLng(latLng.lat, latLng.lng);
-                    coordList.add(point);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        return R * c * 0.62137;
+    }
+
+
+    public void addLines(View view) {
+        double distanceCalculated = calcDistance(lat1, lon1, lat2, lon2);
+        System.out.println("Distance Calculated: " + distanceCalculated);
+        if ((markerStartExists = true) & (markerEndExists = true)) {
+            if (distanceCalculated >= runDistance) {
+                GeoApiContext context = new GeoApiContext();
+                context.setApiKey("AIzaSyBbBEsSFL6AZ5YyG2Kh_2c7nDgQ4ccPJxs");
+                DirectionsRoute[] routes = new DirectionsRoute[0];
+                try {
+                    routes = DirectionsApi.getDirections(context, startLocation.latitude + "," + startLocation.longitude, endLocation.latitude + "," + endLocation.longitude).mode(TravelMode.WALKING).await();
+                    ArrayList<LatLng> coordList = new ArrayList<LatLng>();
+                    for (com.google.maps.model.LatLng latLng : routes[0].overviewPolyline.decodePath()) {
+                        LatLng point = new LatLng(latLng.lat, latLng.lng);
+                        coordList.add(point);
+                    }
+                    PolylineOptions options = new PolylineOptions().addAll(coordList).width(10).color(Color.rgb(102, 204, 255)).geodesic(true);
+                    mMap.addPolyline(options);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                PolylineOptions options = new PolylineOptions().addAll(coordList).width(10).color(Color.rgb(102, 204, 255)).geodesic(true);
-                mMap.addPolyline(options);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                new AlertDialog.Builder(this).setTitle("Error").setMessage("You need to run a larger distance in order to burn those calories. Choose new start and end points and try again.").setNeutralButton("Close", null).show();
+                mMap.clear();
             }
         }
     }
