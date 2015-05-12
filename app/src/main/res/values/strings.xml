@@ -14,4 +14,5 @@
     <string name="parse_app_id">A8dGeDxlmuJcIER5pxDgPgchJm6J6QcQbIii9dGp</string>
     <string name="parse_client_key">ibn7etv5iaj6DWEPL3crLEPXAKqojpVvIoZc1NP0</string>
     <string name="facebook_app_id">INSERT FACEBOOK APP ID HERE</string>
+    <string name="title_activity_camera">Take a selfie and upload</string>
 </resources>
