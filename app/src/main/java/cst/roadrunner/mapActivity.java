@@ -1,6 +1,7 @@
 package cst.roadrunner;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
@@ -39,12 +40,12 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
     double lon1;
     double lat2;
     double lon2;
-    private GoogleMap mMap;
-    private android.location.LocationListener locationListener;
+    public GoogleMap mMap;
+    public android.location.LocationListener locationListener;
     String markerTitle = "";
     boolean markerStartExists, markerEndExists = false;
-    private List<LatLng> latLngs = new ArrayList<>();
-    private List<Marker> markers = new ArrayList<>();
+    public List<LatLng> latLngs = new ArrayList<>();
+    public List<Marker> markers = new ArrayList<>();
 
 
     @Override
@@ -85,7 +86,7 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
         }
     }
 
-    private void handleNewLocation(Location location) {
+    public void handleNewLocation(Location location) {
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
@@ -170,6 +171,10 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
                     }
                     PolylineOptions options = new PolylineOptions().addAll(coordList).width(10).color(Color.rgb(102, 204, 255)).geodesic(true);
                     mMap.addPolyline(options);
+                    Intent locationListener = new Intent(this, locationService.class);
+                    locationListener.putExtra("lat2", lat2);
+                    locationListener.putExtra("lon2", lon2);
+                    startService(locationListener);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -179,4 +184,13 @@ public class mapActivity extends FragmentActivity implements LocationListener, O
             }
         }
     }
+
+    public void startService(View view) {
+        startService(new Intent(getBaseContext(), locationService.class));
+    }
+
+    public void stopService(View view) {
+        stopService(new Intent(getBaseContext(), locationService.class));
+    }
 }
+
