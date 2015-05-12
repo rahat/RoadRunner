@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
         Parse.initialize(this, "A8dGeDxlmuJcIER5pxDgPgchJm6J6QcQbIii9dGp", "ibn7etv5iaj6DWEPL3crLEPXAKqojpVvIoZc1NP0");
         ParseFacebookUtils.initialize(this);
     }
+
     public void startRunActivity(View view) {
         startActivity(new Intent(MainActivity.this, runActivity.class));
     }
+
     public void startSocialActivity(View view) {
         startActivity(new Intent(MainActivity.this, socialActivity.class));
     }
@@ -33,19 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
