@@ -2,4 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="34dp"
+        android:contentDescription="@string/hello_world"
+        android:layout_below="@+id/selfieButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take a selfie!"
+        android:id="@+id/selfieButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignStart="@+id/imageView1" />
+
+    <ShareButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share to Facebook"
+        android:id="@+id/shareButton"
+        android:layout_above="@+id/imageView1"
+        android:layout_toRightOf="@+id/selfieButton"
+        android:layout_toEndOf="@+id/selfieButton"
+        android:layout_marginLeft="40dp" />
 </RelativeLayout>
